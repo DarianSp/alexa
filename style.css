@@ -67,20 +67,56 @@ body { font-family: 'Inter', sans-serif; background: #ffffff; margin: 0; color: 
     border-radius: 5px;
     background: #000;
 }
-/* Botones de navegación del visor */
+/* Botones de navegación del visor mejorados */
 .nav-visor {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.2);
+    
+    /* Efecto de vidrio moderno */
+    background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(10px); /* Desenfoque de fondo */
+    -webkit-backdrop-filter: blur(10px);
+    
     color: white;
-    border: none;
-    font-size: 2rem;
-    padding: 10px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 1.5rem;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    border-radius: 50%;
+    border-radius: 50%; /* Perfectamente circulares */
     z-index: 2001;
-    transition: background 0.3s;
+    transition: all 0.3s ease;
+}
+
+/* Efecto al tocar o pasar el mouse */
+.nav-visor:active, .nav-visor:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev { 
+    left: 20px; 
+}
+
+.next { 
+    right: 20px; 
+}
+
+/* Asegurar que el botón se vea en celulares pero de forma discreta */
+@media (max-width: 600px) {
+    .nav-visor {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+        background: rgba(255, 255, 255, 0.15);
+    }
+    
+    .prev { left: 10px; }
+    .next { right: 10px; }
 }
 
 .nav-visor:hover {
@@ -106,3 +142,4 @@ body { font-family: 'Inter', sans-serif; background: #ffffff; margin: 0; color: 
     text-transform: uppercase;
 
 }
+
