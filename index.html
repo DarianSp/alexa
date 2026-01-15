@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Portfolio | Nombre de tu Hija</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <section class="perfil">
+        <div class="foto-perfil">
+            <img src="foto-principal.jpg" alt="Modelo"> 
+        </div>
+        <h1>Alexa Suárez</h1>
+        <p class="profesion">Professional Model</p>
+        
+        <div class="stats">
+            <div class="stat-item"><strong>Altura:</strong> 1.65m</div>
+            <div class="stat-item"><strong>Ojos:</strong> Café</div>
+            <div class="stat-item"><strong>Cabello:</strong> Castaño</div>
+            
+        </div>
+    </section>
+
+    <hr class="divisor">
+
+    <div class="grid-albumes">
+        <div class="tarjeta-album" onclick="abrirAlbum('editorial')">
+            <img src="portada-editorial.jpg" alt="Editorial">
+            <div class="info">
+                <h3>Yo</h3>
+            </div>
+        </div>
+
+        <div class="tarjeta-album" onclick="abrirAlbum('pasarela')">
+            <img src="portada-pasarela.jpg" alt="Pasarela">
+            <div class="info">
+                <h3>Runway / Pasarela</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="contacto-modelo">
+        <a href="https://www.instagram.com/alexas.vu?igsh=azQyNTNpZW5zeWdx" class="btn-booking">Contactar para Booking 📸</a>
+    </div>
+
+    <div id="visor" class="visor-oculto">
+        <span class="cerrar" onclick="cerrarVisor()">&times;</span>
+        <div class="contenido-visor" id="fotos-contenedor"></div>
+    </div>
+
+    <header>
+    <h2>Video Reel</h2>
+    <p>Pasarela y Trabajos Comerciales</p>
+</header>
+
+<div class="contenedor-videos">
+    <div class="video-card">
+        <video controls poster="miniatura1.jpg">
+            <source src="pasarela.mp4" type="video/mp4">
+            Tu navegador no soporta vídeos.
+        </video>
+        <p>Fashion Week Runway</p>
+    </div>
+
+    
+</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
