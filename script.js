@@ -1,5 +1,5 @@
 const albumes = {
-    'editorial': ['foto1.jpg', 'foto2.jpg', 'foto3.jpg'],
+    'editorial': ['foto1.jpeg', 'foto2.jpeg', 'foto3.jpeg', 'foto4.jpeg', 'foto5.jpeg'],
     'pasarela': ['pasarela1.jpeg', 'pasarela2.jpeg', 'pasarela3.peg']
 };
 
@@ -19,4 +19,5 @@ function abrirAlbum(id) {
 
 function cerrarVisor() {
     document.getElementById('visor').style.display = "none";
+
 }
