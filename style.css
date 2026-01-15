@@ -67,6 +67,36 @@ body { font-family: 'Inter', sans-serif; background: #ffffff; margin: 0; color: 
     border-radius: 5px;
     background: #000;
 }
+/* Botones de navegación del visor */
+.nav-visor {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 2001;
+    transition: background 0.3s;
+}
+
+.nav-visor:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+/* Ocultar flechas en celulares para que no tapen la foto, 
+   ya que ahí se usa el dedo (swipe) */
+@media (max-width: 600px) {
+    .nav-visor {
+        display: none; 
+    }
+}
 
 .video-card p {
     margin-top: 10px;
@@ -74,4 +104,5 @@ body { font-family: 'Inter', sans-serif; background: #ffffff; margin: 0; color: 
     font-weight: bold;
     color: #333;
     text-transform: uppercase;
+
 }
