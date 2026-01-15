@@ -47,7 +47,12 @@
 
     <div id="visor" class="visor-oculto">
         <span class="cerrar" onclick="cerrarVisor()">&times;</span>
-        <div class="contenido-visor" id="fotos-contenedor"></div>
+    
+    <button class="nav-visor prev" onclick="cambiarFoto(-1)">&#10094;</button>
+    <div class="contenido-visor" id="fotos-contenedor"></div>
+    <button class="nav-visor next" onclick="cambiarFoto(1)">&#10095;</button>
+    
+    <div id="contador"></div>
     </div>
 
     <header>
@@ -71,3 +76,4 @@
 </body>
 
 </html>
+
