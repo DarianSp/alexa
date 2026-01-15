@@ -1,90 +1,71 @@
-// 1. CONFIGURACIÓN DE TUS ÁLBUMES
-// Asegúrate de que los nombres aquí sean EXACTOS a tus archivos en GitHub
+// 1. LISTA DE FOTOS POR ÁLBUM
+// Importante: Pon los nombres de tus fotos tal cual aparecen en GitHub
 const albumes = {
-    'editorial': ['edito1.jpg', 'edito2.jpg', 'edito3.jpg'], 
-    'pasarela': ['pasarela1.jpg', 'pasarela2.jpg']
+    'editorial': ['foto1.jpg', 'foto2.jpg', 'foto3.jpg'], 
+    'pasarela': ['pasa1.jpg', 'pasa2.jpg', 'pasa3.jpg']
 };
 
 let fotosActuales = [];
 let indiceActual = 0;
 
-// 2. FUNCIÓN PARA ABRIR EL ÁLBUM
+// 2. ABRIR EL ÁLBUM
 function abrirAlbum(id) {
-    console.log("Abriendo álbum:", id); // Para revisar en la consola si hay error
-    
     if (albumes[id]) {
         fotosActuales = albumes[id];
         indiceActual = 0;
-        
-        actualizarVista();
-        
+        actualizarVisor();
         document.getElementById('visor').style.display = "flex";
-        document.body.style.overflow = "hidden"; // Bloquea el scroll de fondo
-    } else {
-        console.error("El álbum no existe o el ID está mal escrito");
+        document.body.style.overflow = "hidden"; // Evita que la página se mueva atrás
     }
 }
 
-// 3. FUNCIÓN PARA MOSTRAR LA FOTO Y EL CONTADOR
-function actualizarVista() {
+// 3. ACTUALIZAR LA FOTO EN PANTALLA
+function actualizarVisor() {
     const contenedor = document.getElementById('fotos-contenedor');
     const contador = document.getElementById('contador');
     
-    // Mostramos la foto actual
+    // Cambiamos la imagen
     contenedor.innerHTML = `<img src="${fotosActuales[indiceActual]}" class="foto-swipe">`;
     
-    // Actualizamos el contador (ej: 1 / 5)
+    // Actualizamos el numerito (ej: 1 / 5)
     if (contador) {
         contador.innerText = `${indiceActual + 1} / ${fotosActuales.length}`;
     }
 }
 
-// 4. FUNCIÓN PARA CAMBIAR FOTO (Llamada por las flechas)
-function cambiarFoto(direccion) {
-    console.log("Cambiando foto. Dirección:", direccion);
-    
-    indiceActual += direccion;
-
-    // Si llega al final, vuelve al principio
-    if (indiceActual >= fotosActuales.length) {
-        indiceActual = 0;
-    }
-    // Si retrocede desde la primera, va a la última
-    if (indiceActual < 0) {
-        indiceActual = fotosActuales.length - 1;
-    }
-
-    actualizarVista();
+// 4. CAMBIAR FOTO (Llamada por botones o swipe)
+function cambiarFoto(dir) {
+    indiceActual += dir;
+    if (indiceActual >= fotosActuales.length) indiceActual = 0;
+    if (indiceActual < 0) indiceActual = fotosActuales.length - 1;
+    actualizarVisor();
 }
 
-// 5. FUNCIÓN PARA CERRAR
+// 5. CERRAR EL VISOR
 function cerrarVisor() {
     document.getElementById('visor').style.display = "none";
-    document.body.style.overflow = "auto"; // Libera el scroll
+    document.body.style.overflow = "auto";
 }
 
-// 6. DETECCIÓN DE DESLIZAMIENTO (SWIPE) PARA CELULARES
-let touchStartX = 0;
-let touchEndX = 0;
+// 6. DETECTAR EL MOVIMIENTO DEL DEDO (SWIPE)
+let toqueInicialX = 0;
 
-const visorElement = document.getElementById('visor');
+// Cuando el dedo toca la pantalla
+document.getElementById('visor').addEventListener('touchstart', function(e) {
+    toqueInicialX = e.touches[0].clientX;
+}, false);
 
-visorElement.addEventListener('touchstart', e => {
-    touchStartX = e.changedTouches[0].screenX;
-});
+// Cuando el dedo se levanta de la pantalla
+document.getElementById('visor').addEventListener('touchend', function(e) {
+    let toqueFinalX = e.changedTouches[0].clientX;
+    let distanciaX = toqueInicialX - toqueFinalX;
 
-visorElement.addEventListener('touchend', e => {
-    touchEndX = e.changedTouches[0].screenX;
-    manejarSwipe();
-});
-
-function manejarSwipe() {
-    const diferencia = touchStartX - touchEndX;
-    if (Math.abs(diferencia) > 50) { // Sensibilidad
-        if (diferencia > 0) {
-            cambiarFoto(1); // Deslizó a la izquierda -> Siguiente
+    // Si el movimiento fue mayor a 50 píxeles, cambiamos la foto
+    if (Math.abs(distanciaX) > 50) {
+        if (distanciaX > 0) {
+            cambiarFoto(1);  // Deslizó a la izquierda -> Siguiente
         } else {
             cambiarFoto(-1); // Deslizó a la derecha -> Anterior
         }
     }
-}
+}, false);
