@@ -1,8 +1,8 @@
 // 1. LISTA DE FOTOS POR ÁLBUM
 // Importante: Pon los nombres de tus fotos tal cual aparecen en GitHub
 const albumes = {
-    'editorial': ['foto1.jpg', 'foto2.jpg', 'foto3.jpg'], 
-    'pasarela': ['pasa1.jpg', 'pasa2.jpg', 'pasa3.jpg']
+    'editorial': ['foto1.jpeg', 'foto2.jpeg', 'foto3.jpeg','foto4.jpeg','foto5.jpeg'], 
+    'pasarela': ['pasarela1.jpeg', 'pasarela2.jpeg', 'pasarela3.jpeg']
 };
 
 let fotosActuales = [];
@@ -69,3 +69,4 @@ document.getElementById('visor').addEventListener('touchend', function(e) {
         }
     }
 }, false);
+
